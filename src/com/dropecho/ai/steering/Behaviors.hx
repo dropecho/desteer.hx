@@ -1,8 +1,5 @@
 package com.dropecho.ai.steering;
-
-import hxmath.math.Vector3;
-
-typedef Vector = Vector3;
+import com.dropecho.math.Vector;
 
 @:expose("desteer.behaviors")
 class Behaviors {
@@ -19,7 +16,7 @@ class Behaviors {
 		var distance = desired.length;
 
 		if(distance < arrive_radius) {
-			return Vector3.scalarMultiply((distance / arrive_radius), desired);
+			return (distance / arrive_radius) * desired;
 		}
 
 		return desired;
