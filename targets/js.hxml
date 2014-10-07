@@ -1,0 +1,8 @@
+--times
+
+-cp src
+-js bin/js/desteer.js
+
+-lib hxmath
+--macro include('com.dropecho.ai.steering')
+

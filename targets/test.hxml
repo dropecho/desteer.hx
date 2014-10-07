@@ -1,0 +1,8 @@
+--times
+
+-cp src
+-neko bin/tests/tests.n
+--macro include('com.dropecho')
+
+-lib hxmath
+-main tests.TestRunner
