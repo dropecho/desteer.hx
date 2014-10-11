@@ -55,7 +55,6 @@ class Behaviors {
 	}
 
 	static public function interpose(pos : Vector, target1 : Vector, target2 : Vector) : Vector {
-		//find midpoint;
 		var midpoint = new Vector(0,0,0);
 		return seek(pos, midpoint);
 	}

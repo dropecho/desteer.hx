@@ -2,3 +2,4 @@ report
 bin
 *.swp
 .temp
+node_modules
