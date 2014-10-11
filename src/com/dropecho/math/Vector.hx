@@ -6,16 +6,16 @@ abstract Vector({ x:Float, y:Float, z:Float}) {
 	public var z(get,set) : Float;
 	public var length(get,never) : Float;
 
-	public function new(x : Float, y : Float, z: Float){
+	public function new(x : Float, y : Float, z: Float = 0){
 		this = { x:x, y:y, z:z };
 	}
 
-	@:from //This may cause weirdness cause it allows any cast type
+	@:from 
 	public static function from3(vec : {x:Float, y:Float, z:Float}){
 		return cast vec;
 	}
 
-	@:from //This may cause weirdness cause it allows any cast type
+	@:from
 	public static function from2(vec : {x:Float, y:Float}){
 		var rt : Dynamic = vec;
 		rt.z = 0.0;
@@ -28,7 +28,40 @@ abstract Vector({ x:Float, y:Float, z:Float}) {
 	}
 
 	@:op(A * B)
-	public function scale(scalar : Float) : Vector {
+	inline public function dot(vec : Vector) : Float { 
+		var x = this.x * vec.x;
+		var y = this.y * vec.y;
+		var z = this.z * vec.z;
+
+		return x + y + z;
+	}
+
+	@:op(A % B)
+	inline public function cross(vec : Vector) : Vector {
+		var x = (this.y * vec.z) - (this.z * vec.y);
+		var y = (this.z * vec.x) - (this.x * vec.z);
+		var z = (this.x * vec.y) - (this.y * vec.x);
+
+		return new Vector(x, y, z);
+	}
+
+	@:op(A == B)
+	inline public function equals(vec : Vector) : Bool {
+		return this.x == vec.x && this.y == vec.y && this.z == vec.z;
+	}
+
+	@:op(A == B)
+	inline static public function equals2(vec : Vector, vec2 : Vector) : Bool {
+		return vec == vec2;
+	}
+
+	@:op(A != B)
+	inline public function notEquals(vec : Vector) : Bool {
+		return !vec.equals(this);
+	}
+	
+	@:op(A * B)
+    inline public function scale(scalar : Float) : Vector {
 		this.x *= scalar;
 		this.y *= scalar;
 		this.z *= scalar;
@@ -50,11 +83,6 @@ abstract Vector({ x:Float, y:Float, z:Float}) {
 	}
 
 	@:op(A + B)
-	inline static public function addVector2(vec : Vector, vec2 : Vector) : Vector {
-		return vec.addVector(vec2);
-	}
-
-	@:op(A + B)
 	inline public function addScalar(scalar : Float) : Vector {
 		this.x += scalar;
 		this.y += scalar;
@@ -67,7 +95,30 @@ abstract Vector({ x:Float, y:Float, z:Float}) {
 	inline static public function addScalar2(scalar : Float, vec : Vector) : Vector {
 		return vec.addScalar(scalar);
 	}
+
+	@:op(A - B)
+	inline public function subVector(vec : Vector) : Vector {
+		this.x -= vec.x;
+		this.y -= vec.y;
+		this.z -= vec.z;
+
+		return this;
+	}
 	
+	@:op(A + B)
+	inline public function subScalar(scalar : Float) : Vector {
+		this.x -= scalar;
+		this.y -= scalar;
+		this.z -= scalar;
+
+		return this;
+	}
+
+	@:op(A + B)
+	inline static public function subScalar2(scalar : Float, vec : Vector) : Vector {
+		return vec.subScalar(scalar);
+	}
+
 	public function get_length() : Float{
 		return 0.0;
 	}

@@ -38,6 +38,5 @@
 -lib munit
 -lib hamcrest
 -cp src
-
 -cp test
 -neko bin/test/neko_test.n
