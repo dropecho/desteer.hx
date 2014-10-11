@@ -11,9 +11,15 @@ abstract Vector({ x:Float, y:Float, z:Float}) {
 	}
 
 	@:from //This may cause weirdness cause it allows any cast type
-	public static function from(vec : Dynamic){
-		vec.z = vec.z == null ? 0.0 : vec.z;
+	public static function from3(vec : {x:Float, y:Float, z:Float}){
 		return cast vec;
+	}
+
+	@:from //This may cause weirdness cause it allows any cast type
+	public static function from2(vec : {x:Float, y:Float}){
+		var rt : Dynamic = vec;
+		rt.z = 0.0;
+		return cast rt;
 	}
 
 	@:to 
@@ -35,6 +41,20 @@ abstract Vector({ x:Float, y:Float, z:Float}) {
 	}
 
 	@:op(A + B)
+	inline public function addVector(vec : Vector) : Vector {
+		this.x += vec.x;
+		this.y += vec.y;
+		this.z += vec.z;
+
+		return this;
+	}
+
+	@:op(A + B)
+	inline static public function addVector2(vec : Vector, vec2 : Vector) : Vector {
+		return vec.addVector(vec2);
+	}
+
+	@:op(A + B)
 	inline public function addScalar(scalar : Float) : Vector {
 		this.x += scalar;
 		this.y += scalar;
@@ -47,16 +67,7 @@ abstract Vector({ x:Float, y:Float, z:Float}) {
 	inline static public function addScalar2(scalar : Float, vec : Vector) : Vector {
 		return vec.addScalar(scalar);
 	}
-
-	@:op(A + B)
-	inline public function addVector(vec : Vector) : Vector {
-		this.x += vec.x;
-		this.y += vec.y;
-		this.z += vec.z;
-
-		return this;
-	}
-
+	
 	public function get_length() : Float{
 		return 0.0;
 	}
