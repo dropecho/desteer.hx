@@ -22,12 +22,21 @@ class Behaviors {
 		return desired;
 	}
 
+	static private function predict_target_pos(
+			target:Vector, 
+			target_velocity: Vector,
+			look_ahead: Float) : Vector {
+		return target + (target_velocity * look_ahead);
+	}
+
 	static public function pursue (
 			pos : Vector, 
 			target : Vector,
-			target_velocity : Vector) : Vector 
+			target_velocity : Vector,
+			look_ahead:Float = .25) : Vector 
 	{
-		return seek(pos, target);
+		var predicted = predict_target_pos(target, target_velocity, look_ahead); 
+		return seek(pos, predicted);
 	}
 
 	static public function flee(pos : Vector, target : Vector) : Vector {
@@ -40,10 +49,7 @@ class Behaviors {
 			target_velocity : Vector,
 			look_ahead : Float = .25) : Vector 
 	{
-		//predict future pos of target
-		var predicted = target + (target_velocity * look_ahead);
-
-		//flee predicted position.
+		var predicted = predict_target_pos(target, target_velocity, look_ahead); 
 		return flee(pos, predicted);
 	}
 
