@@ -10,7 +10,7 @@ class Behaviors {
 	static public function arrive(
 			pos : Vector, 
 			target : Vector,
-			arrive_radius : Float) : Vector 
+			arrive_radius : Float = 0) : Vector 
 	{
 		var desired = seek(pos, target);
 		var distance = desired.length;
@@ -55,7 +55,8 @@ class Behaviors {
 	}
 
 	static public function interpose(pos : Vector, target1 : Vector, target2 : Vector) : Vector {
-		var midpoint = new Vector(0,0,0);
+		var midpoint = Vector.midpoint(target1, target2);
+		
 		return seek(pos, midpoint);
 	}
 

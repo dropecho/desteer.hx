@@ -113,4 +113,13 @@ class VectorTest {
 
 		Assert.isTrue(vec != vec2);
 	}
+
+	@Test function midpoint() {
+		var vec = new Vector(1.0, 1.0, 1.0);
+		var vec2 = new Vector(0.0, 0.0, 0.0);
+
+		var mid = Vector.midpoint(vec,vec2);
+		
+		checkComponents(0.5, mid);
+	}
 }

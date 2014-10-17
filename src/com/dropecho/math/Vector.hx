@@ -119,6 +119,14 @@ abstract Vector({ x:Float, y:Float, z:Float}) {
 		return vec.subScalar(scalar);
 	}
 
+	inline static public function midpoint(vec : Vector, vec2 : Vector) : Vector {
+		var x = (vec.x + vec2.x) / 2;
+		var y = (vec.y + vec2.y) / 2;
+		var z = (vec.z + vec2.z) / 2;
+
+		return new Vector(x,y,z);
+	}
+
 	public function get_length() : Float{
 		return 0.0;
 	}
