@@ -37,9 +37,14 @@ class Behaviors {
 	static public function evade(
 			pos : Vector, 
 			target : Vector,
-			target_velocity : Vector) : Vector 
+			target_velocity : Vector,
+			look_ahead : Float = .25) : Vector 
 	{
-		return flee(pos, target);
+		//predict future pos of target
+		var predicted = target + (target_velocity * look_ahead);
+
+		//flee predicted position.
+		return flee(pos, predicted);
 	}
 
 	static public function avoid(){
@@ -56,8 +61,7 @@ class Behaviors {
 
 	static public function interpose(pos : Vector, target1 : Vector, target2 : Vector) : Vector {
 		var midpoint = Vector.midpoint(target1, target2);
-		
-		return seek(pos, midpoint);
+		return arrive(pos, midpoint);
 	}
 
 

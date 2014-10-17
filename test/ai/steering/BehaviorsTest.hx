@@ -40,4 +40,11 @@ class BehaviorsTest
 		
 		Assert.isTrue({x:-1.0, y:1.0} == foo);
 	}
+
+	@Test function evade(){
+		var foo = Behaviors.evade({x:0.0,y:0.0},{x:2.0,y:0.0},{x:-4.0,y:0.0});
+		
+		Assert.areEqual(-1.0, foo.x);
+		Assert.areEqual(0.0, foo.y);
+	}
 }	
