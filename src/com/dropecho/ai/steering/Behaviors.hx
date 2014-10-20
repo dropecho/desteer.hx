@@ -70,7 +70,6 @@ class Behaviors {
 		return arrive(pos, midpoint);
 	}
 
-
 	static public function wander(){
 	}
 }
