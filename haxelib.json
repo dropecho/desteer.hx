@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"tags": ["ai", "game"],
 	"description": "This library provides steering behaviors.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"releasenote": "Initial release",
 	"contributors": ["Ben Van Treese"]
 }
