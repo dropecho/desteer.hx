@@ -5,6 +5,7 @@
 	"tags": ["ai", "game"],
 	"description": "This library provides steering behaviors.",
 	"version": "0.0.2",
+	"classPath":"src",
 	"releasenote": "Initial release",
-	"contributors": ["Ben Van Treese"]
+	"contributors": ["vantreeseba"]
 }
