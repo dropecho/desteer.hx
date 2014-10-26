@@ -1,14 +1,21 @@
 language: node_js
-cache: 
+cache:
   apt: true
   directories:
-    - node_modules
-
+  - node_modules
 before_script:
-  - sudo apt-get update
-  - sudo apt-get install python-software-properties -y 	
-  - sudo add-apt-repository ppa:eyecreate/haxe -y      	
-  - sudo apt-get update                                	
-  - sudo apt-get install haxe -y            
-  - sudo haxelib setup /usr/lib/haxe/lib
-  - sudo haxelib install munit
+- sudo apt-get update
+- sudo apt-get install python-software-properties -y
+- sudo add-apt-repository ppa:eyecreate/haxe -y
+- sudo apt-get update
+- sudo apt-get install haxe -y
+- sudo haxelib setup /usr/lib/haxe/lib
+- sudo haxelib install munit
+deploy:
+  provider: npm
+  email: vantreeseba@gmail.com
+  api_key:
+    secure: XFOrxJFMDdOVA0WLKIgb3X8mBe3DoOmQO4Q662ofQPru4qAisFJAesjNdBU+Crqm9j/tSUx7jIobEedOXegqowAxHfEjy25XzUfduYyaeMXsXHyy1aPvSauXmVnLD6EnUECPBth+pYaFGztnG70BcpZrskwYD91xzLo4VWllg2o=
+  on:
+    tags: true
+    repo: DropechoStudios/desteer.hx
