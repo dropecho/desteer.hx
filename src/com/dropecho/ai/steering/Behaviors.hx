@@ -4,7 +4,7 @@ import com.dropecho.math.Vector;
 @:expose("desteer.behaviors")
 class Behaviors {
 	static public function seek(pos : Vector, target : Vector) : Vector {
-		return target - pos;
+		return target.sub(pos);
 	}
 
 	static public function arrive(
@@ -16,7 +16,7 @@ class Behaviors {
 		var distance = desired.length;
 
 		if(distance < arrive_radius) {
-			return (distance / arrive_radius) * desired;
+			return desired.scale(distance / arrive_radius);
 		}
 
 		return desired;
@@ -26,7 +26,7 @@ class Behaviors {
 			target:Vector, 
 			target_velocity: Vector,
 			look_ahead: Float) : Vector {
-		return target + (target_velocity * look_ahead);
+		return target.add(target_velocity.scale(look_ahead));
 	}
 
 	static public function pursue (
@@ -40,7 +40,7 @@ class Behaviors {
 	}
 
 	static public function flee(pos : Vector, target : Vector) : Vector {
-		return pos - target;
+		return pos.sub(target);
 	}
 
 	static public function evade(

@@ -1,7 +1,6 @@
 import massive.munit.TestSuite;
 
 import ai.steering.BehaviorsTest;
-import ExampleTest;
 import math.VectorTest;
 
 /**
@@ -17,7 +16,6 @@ class TestSuite extends massive.munit.TestSuite
 		super();
 
 		add(ai.steering.BehaviorsTest);
-		add(ExampleTest);
 		add(math.VectorTest);
 	}
 }

@@ -2,31 +2,38 @@ package ai.steering;
 
 import massive.munit.Assert;
 import com.dropecho.ai.steering.Behaviors;
+import com.dropecho.math.Vector;
 
 class BehaviorsTest
 {
 	@Test
 	public function seek():Void
 	{
-		var actual = Behaviors.seek({x:1.0,y:0.0},{x:0.0,y:1.0});
+		var actual = Behaviors.seek(new Vector(1,0,0),new Vector(0,1,0));
+    var expected = new Vector(-1,1,0);
 		
-		Assert.isTrue({x:-1.0, y:1.0} == actual);
+		Assert.areEqual(expected.x, actual.x);
+		Assert.areEqual(expected.y, actual.y);
+		Assert.areEqual(expected.z, actual.z);
 	}
 	
 	@Test
 	public function flee():Void
 	{
-		var actual = Behaviors.flee({x:1.0,y:0.0},{x:0.0,y:1.0});
+		var actual = Behaviors.flee(new Vector(1,0,0),new Vector(0,1,0));
+    var expected = new Vector(1,-1,0);
 		
-		Assert.isTrue({x:1.0, y:-1.0} == actual);
+		Assert.areEqual(expected.x, actual.x);
+		Assert.areEqual(expected.y, actual.y);
+		Assert.areEqual(expected.z, actual.z);
 	}
 	
 	@Test
 	public function interpose():Void
 	{
-		var pos = {x:1.0, y:1.0};
-		var vec1 = {x:0.0,y:0.0};
-		var vec2 = {x:2.0,y:0.0};
+		var pos = new Vector(1,1,0);
+		var vec1 = new Vector(0,0,0); 
+		var vec2 = new Vector(2,0,0); 
 		var actual = Behaviors.interpose(pos, vec1, vec2);
 		
 		Assert.areEqual(0.0, actual.x);
@@ -36,20 +43,29 @@ class BehaviorsTest
 	@Test
 	public function arrive()
 	{
-		var actual = Behaviors.arrive({x:1.0,y:0.0},{x:0.0,y:1.0});
-		
-		Assert.isTrue({x:-1.0, y:1.0} == actual);
+		var actual = Behaviors.arrive(new Vector(1,0,0), new Vector(0,1,0));
+    var expected = new Vector(-1,1,0);
+			
+		Assert.areEqual(expected.x, actual.x);
+		Assert.areEqual(expected.y, actual.y);
+		Assert.areEqual(expected.z, actual.z);
 	}
 
 	@Test function evade(){
-		var actual = Behaviors.evade({x:0.0,y:0.0},{x:2.0,y:0.0},{x:-4.0,y:0.0});
+		var actual = Behaviors.evade(
+        new Vector(0,0,0),
+        new Vector(2,0,0),
+        new Vector(-4,0,0));
 		
 		Assert.areEqual(-1.0, actual.x);
 		Assert.areEqual(0.0, actual.y);
 	}
 
 	@Test function pursue(){
-		var actual = Behaviors.pursue({x:0.0,y:0.0},{x:1.0,y:0.0},{x:4.0,y:0.0});
+		var actual = Behaviors.pursue(
+        new Vector(0,0,0),
+        new Vector(1,0,0),
+        new Vector(4,0,0));
 		
 		Assert.areEqual(2.0, actual.x);
 		Assert.areEqual(0.0, actual.y);
