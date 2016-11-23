@@ -1,13 +1,13 @@
 package com.dropecho.math;
 
-
+@:expose('de.math.Vector')
 class Vector {
 	public var x: Float;
 	public var y: Float;
 	public var z: Float;
-	public var length: Float;
+	public var length(get, never): Float;
 
-	public function new(x : Float, y : Float, z: Float = 0){
+	public function new(x : Float = 0, y : Float = 0, z: Float = 0){
     this.x = x;
     this.y = y;
     this.z = z;
@@ -30,6 +30,19 @@ class Vector {
 
 		return new Vector(x, y, z);
 	}
+
+  inline public function normalize(scalar : Float) : Vector {
+    var length = this.length;
+    var normalLength = length != 0 ? (1.0 / length) : 1;
+    this.x = this.x * normalLength;
+    this.y = this.y * normalLength;	
+
+    if(scalar > 0){
+      this.scale(scalar);
+    }
+
+    return this;
+  }
 
 	// @:op(A == B)
 	// inline public function equals(vec : Vector) : Bool {
@@ -79,4 +92,25 @@ class Vector {
 
 		return new Vector(x,y,z);
 	}
+
+  inline public function get_length() : Float {
+    return Math.sqrt((this.x * this.x) + (this.y * this.y));
+  }
+
+  inline public function distanceFrom(vec : Vector) : Float {
+    return new Vector(this.x - vec.x,this.y - vec.y, this.z - vec.z).length;
+  }
+
+  inline static public function fromDeg(deg : Float) : Vector {
+    return Vector.fromRad(MathUtils.degToRad(deg));
+  }
+
+  inline static public function fromRad(rad : Float) : Vector {
+    var x = MathUtils.round(Math.cos(rad), 7);
+    var y = MathUtils.round(Math.sin(rad), 7);
+
+    return new Vector(x,y);
+  }
+
+
 }

@@ -4,7 +4,6 @@ import massive.munit.Assert;
 import com.dropecho.math.Vector; 
 
 class VectorTest {
-
 	private function checkComponents(expected : Float, actual : Vector){
 		Assert.areEqual(expected, actual.x);
 		Assert.areEqual(expected, actual.y);
@@ -60,8 +59,8 @@ class VectorTest {
 		Assert.areEqual(expectedCross.y, cross.y);
 		Assert.areEqual(expectedCross.z, cross.z);
 	}
-	@Test function midpoint() {
 
+	@Test function midpoint() {
 		var vec = new Vector(1.0, 1.0, 1.0);
 		var vec2 = new Vector(0.0, 0.0, 0.0);
 
@@ -69,4 +68,26 @@ class VectorTest {
 		
 		checkComponents(0.5, mid);
 	}
+
+  @Test function fromDeg(){
+    var deg = 0;
+    var vec2 = new Vector(1,0,0); 
+
+    var heading = Vector.fromDeg(deg);
+
+		Assert.areEqual(heading.x, vec2.x);
+		Assert.areEqual(heading.y, vec2.y);
+		Assert.areEqual(heading.z, vec2.z);
+  }
+
+  @Test function fromDeg2(){
+    var deg = 90;
+    var vec2 = new Vector(0,1,0); 
+
+    var heading = Vector.fromDeg(deg);
+
+		Assert.areEqual(heading.x, vec2.x);
+		Assert.areEqual(heading.y, vec2.y);
+		Assert.areEqual(heading.z, vec2.z);
+  }
 }

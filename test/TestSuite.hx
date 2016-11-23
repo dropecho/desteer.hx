@@ -2,6 +2,7 @@ import massive.munit.TestSuite;
 
 import ai.steering.BehaviorsTest;
 import math.VectorTest;
+import math.MathUtilsTest;
 
 /**
  * Auto generated Test Suite for MassiveUnit.
@@ -17,5 +18,6 @@ class TestSuite extends massive.munit.TestSuite
 
 		add(ai.steering.BehaviorsTest);
 		add(math.VectorTest);
+		add(math.MathUtilsTest);
 	}
 }
