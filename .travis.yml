@@ -11,6 +11,7 @@ before_script:
 - sudo apt-get install haxe -y
 - sudo haxelib setup /usr/lib/haxe/lib
 - sudo haxelib install munit
+- sudo haxelib install hamcrest
 deploy:
   provider: npm
   email: vantreeseba@gmail.com
