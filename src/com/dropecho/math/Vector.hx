@@ -58,7 +58,6 @@ class Vector {
 	// inline public function notEquals(vec : Vector) : Bool {
 	//   return !vec.equals(this);
 	// }
-	
 	@:op(A * B)
   inline public function scale(scalar : Float) : Vector {
 		this.x *= scalar;
@@ -101,6 +100,14 @@ class Vector {
     return new Vector(this.x - vec.x,this.y - vec.y, this.z - vec.z).length;
   }
 
+  inline static public function add2(vec1:Vector, vec2:Vector):Vector {
+    return new Vector(vec1.x + vec2.x, vec1.y + vec2.y, vec1.z + vec2.z);
+  }
+
+  inline static public function sub2(vec1:Vector, vec2:Vector):Vector {
+    return new Vector(vec1.x - vec2.x, vec1.y - vec2.y, vec1.z - vec2.z);
+  }
+
   inline static public function fromDeg(deg : Float) : Vector {
     return Vector.fromRad(MathUtils.degToRad(deg));
   }
@@ -111,6 +118,4 @@ class Vector {
 
     return new Vector(x,y);
   }
-
-
 }

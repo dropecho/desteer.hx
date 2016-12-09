@@ -5,13 +5,14 @@ import com.dropecho.math.Vector;
 class Behaviors {
 
   static public function seek(pos : Vector, target : Vector) : Vector {
-    return target.sub(pos);
+    return Vector.sub2(target,pos);
   }
 
   static public function arrive(
     pos : Vector,
     target : Vector,
-    arrive_radius : Float = 0) : Vector {
+    arrive_radius : Float = 0) : Vector
+  {
     var desired = seek(pos, target);
     var distance = desired.length;
 
@@ -26,22 +27,22 @@ class Behaviors {
     pos : Vector,
     target : Vector,
     target_velocity : Vector,
-    look_ahead: Float = .25) : Vector 
-  {
+    look_ahead: Float = .25) : Vector {
     var predicted = predict_target_pos(target, target_velocity, look_ahead);
     return seek(pos, predicted);
   }
 
   static public function flee(pos : Vector, target : Vector, fleeRadius: Float = -1) : Vector {
     var shouldFlee = fleeRadius != -1 && fleeRadius >= target.distanceFrom(pos);
-    return pos.sub(target);
+    return Vector.sub2(pos, target);
   }
 
   static public function evade(
     pos : Vector,
     target : Vector,
     target_velocity : Vector,
-    look_ahead : Float = .25) : Vector {
+    look_ahead : Float = .25) : Vector
+  {
     var predicted = predict_target_pos(target, target_velocity, look_ahead);
     return flee(pos, predicted);
   }
@@ -49,37 +50,36 @@ class Behaviors {
   static public function avoid() {
   }
 
-  static public function seperate(pos: Vector, neighbors: Array<Vector>) {
-     var seperationForce = new Vector();
-     var neighborCount = neighbors.length;
-     
-     for(n in 0...neighborCount)
-     {        
-       var awayFromNeighbor = pos.sub(neighbors[n]);
-       var distanceToNeighbor = awayFromNeighbor.length;
-       seperationForce.add(awayFromNeighbor.normalize(128/distanceToNeighbor));    
-     }
+  static public function seperate(pos: Vector, neighbors: Array<Vector>) :Vector {
+    var seperationForce = new Vector();
+    var neighborCount = neighbors.length;
 
-     return seperationForce;
+    for (n in 0...neighborCount) {
+      var awayFromNeighbor = Vector.sub2(pos,neighbors[n]);
+      var distanceToNeighbor = awayFromNeighbor.length;
+      seperationForce.add(awayFromNeighbor.normalize(128 / distanceToNeighbor));
+    }
+
+    return seperationForce;
   }
 
-  static public function cohese(pos:Vector, neighbors:Array<Vector>, maxSpeed:Float) {
+  static public function cohese(pos: Vector, neighbors: Array<Vector>, maxSpeed: Float) : Vector {
     var centerOfMass = new Vector();
     var neighborCount = neighbors.length;
 
-    for(n in 0...neighborCount){     
+    for (n in 0...neighborCount) {
       centerOfMass.add(neighbors[n]);
     }
 
-    if(neighborCount > 0){          
-      centerOfMass.scale(1/neighborCount);
-      return Behaviors.arrive(pos,centerOfMass,maxSpeed);     
+    if (neighborCount > 0) {
+      centerOfMass.scale(1 / neighborCount);
+      return Behaviors.arrive(pos, centerOfMass, maxSpeed);
     }
-    
+
     return new Vector();
   }
 
-  static public function align(heading: Vector, neighborHeadings: Array<Vector>) { 
+  static public function align(heading: Vector, neighborHeadings: Array<Vector>) {
     var averageHeading = new Vector();
     var neighborCount = neighborHeadings.length;
 
