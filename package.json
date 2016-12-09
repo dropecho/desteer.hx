@@ -1,1 +1,21 @@
-{    "name": "desteer",    "description": "A steering behaviors library for game AI.",    "version": "0.0.2",	"repository":"DropechoStudios/desteer.hx",	"author":{		"name":"Ben Van Treese",		"email":"vantreeseba@gmail.com",		"url":"http://github.com/vantreeseba"	},    "scripts": {        "build": "gulp build",        "test": "gulp test"    },    "devDependencies": {        "gulp": "*",        "gulp-shell": "*",        "mkdirp": "*"    },    "main": "bin/js/desteer.js"}
+{
+  "name": "desteer",
+  "description": "A steering behaviors library for game AI.",
+  "version": "0.0.3",
+  "repository": "DropechoStudios/desteer.hx",
+  "author": {
+    "name": "Ben Van Treese",
+    "email": "vantreeseba@gmail.com",
+    "url": "http://github.com/vantreeseba"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "test": "gulp test"
+  },
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-shell": "*",
+    "mkdirp": "*"
+  },
+  "main": "bin/js/desteer.js"
+}
