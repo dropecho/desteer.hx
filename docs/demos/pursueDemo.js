@@ -3,7 +3,7 @@ var pursueDemo = new Demo('pursue', function() {
   var tar = new de.math.Vector(this.target.x, this.target.y);
   var tarVel = new de.math.Vector(this.target.vel.x, this.target.vel.y);
 
-  var vec = de.steer.behaviors.pursue(pos, tar, tarVel, 50);
+  var vec = de.steer.behaviors.pursue(pos, tar, tarVel, 100);
   updateEntityVel(this.entity, vec);
 
   // var pursueVec = de.steer.behaviors.flee(tar, pos, 75).scale(0.05);

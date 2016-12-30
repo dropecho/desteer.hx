@@ -1,14 +1,14 @@
 var flockDemo = new Demo('flock', function() {
-  let ents = this.entities.map(e => new de.math.Vector(e.x, e.y));
-  let entHeadings = this.entities.map(e => de.math.Vector.fromRad(e.rotation));
+  let ents = this.entities.children.map(e => new de.math.Vector(e.x, e.y));
+  let entHeadings = this.entities.children.map(e => de.math.Vector.fromRad(e.rotation));
   let center = new de.math.Vector(this.renderer.width/2, this.renderer.height/2);
 
-  this.entities.forEach(e => {
+  this.entities.children.forEach(e => {
     let pos = new de.math.Vector(e.x, e.y);
     let rot = de.math.Vector.fromRad(e.rotation);
-    let seperate = de.steer.behaviors.seperate(pos, ents).scale(0.05);
-    let cohese = de.steer.behaviors.cohese(pos, ents).scale(0.01);
-    let align = de.steer.behaviors.align(rot, entHeadings).scale(0.0125);
+    let seperate = de.steer.behaviors.seperate(pos, ents).scale(0.0125);
+    let cohese = de.steer.behaviors.cohese(pos, ents).scale(0.0125);
+    let align = de.steer.behaviors.align(rot, entHeadings).scale(0.025);
     let forward = de.math.Vector.fromRad(e.rotation);
 
     let seek = de.steer.behaviors.seek(pos, center).scale(0.0001);
@@ -17,9 +17,10 @@ var flockDemo = new Demo('flock', function() {
   });
 });
 
-flockDemo.entities = [];
+flockDemo.entities = new PIXI.DisplayObjectContainer();
+flockDemo.stage.addChild(flockDemo.entities);
 
-for(var i = 0; i < 10; i++){
+for(var i = 0; i < 100; i++){
   var x = Math.random() * (flockDemo.renderer.width / 2);
   var y = Math.random() * (flockDemo.renderer.height / 2);
   createEntity(x, y);
@@ -37,9 +38,10 @@ function createEntity(x,y){
   entity.position.x = x;
   entity.position.y = y;
 
-  flockDemo.entities.push(entity);
-
-  flockDemo.stage.addChild(entity);
+  flockDemo.entities.addChild(entity);
 }
+
+flockDemo.entities.scale.x = 0.5;
+flockDemo.entities.scale.y = 0.5;
 
 flockDemo.animate();
