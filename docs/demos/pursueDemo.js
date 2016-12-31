@@ -6,11 +6,6 @@ var pursueDemo = new Demo('pursue', function() {
   var vec = de.steer.behaviors.pursue(pos, tar, tarVel, 100);
   updateEntityVel(this.entity, vec);
 
-  // var pursueVec = de.steer.behaviors.flee(tar, pos, 75).scale(0.05);
-  // var turnVec = de.math.Vector.fromRad(pursueVec.toRad() + Math.PI);
-  // console.log(pursueVec, turnVec);
-  // updateEntityVel(this.target, pursueVec.add(turnVec));
-  
   var forward = de.math.Vector
     .fromRad(this.target.rotation)
     .scale(3);
@@ -28,24 +23,8 @@ var pursueDemo = new Demo('pursue', function() {
   }
 });
 
-pursueDemo.entity = new PIXI.Sprite(pursueDemo.e1Texture);
-pursueDemo.entity.vel = {x:0, y:0, maxVelocity: 3, maxForce: 0.5};
-
-// center the sprite 's anchor point
-pursueDemo.entity.anchor.x = 0.5;
-pursueDemo.entity.anchor.y = 0.5;
-
-// move the sprite to the center of the screen
-pursueDemo.entity.position.x = 200;
-pursueDemo.entity.position.y = 150;
-
-pursueDemo.target = new PIXI.Sprite(pursueDemo.e2Texture);
-pursueDemo.target.position.x = 100;
-pursueDemo.target.position.y = 100;
-pursueDemo.target.vel = {x:0, y:0, maxVelocity: 4, maxForce: 0.5};
-
-pursueDemo.target.anchor.x = 0.5;
-pursueDemo.target.anchor.y = 0.5;
+pursueDemo.entity = pursueDemo.createEntity(200, 150, true);
+pursueDemo.target = pursueDemo.createEntity(100, 100, false);
 
 pursueDemo.stage.addChild(pursueDemo.entity);
 pursueDemo.stage.addChild(pursueDemo.target);

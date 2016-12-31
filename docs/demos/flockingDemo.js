@@ -23,22 +23,8 @@ flockDemo.stage.addChild(flockDemo.entities);
 for(var i = 0; i < 100; i++){
   var x = Math.random() * (flockDemo.renderer.width / 2);
   var y = Math.random() * (flockDemo.renderer.height / 2);
-  createEntity(x, y);
-}
-
-function createEntity(x,y){
-  var entity = new PIXI.Sprite(flockDemo.e1Texture);
-  entity.vel = {x:0, y:0, maxVelocity: 3, maxForce: 0.5};
-
-  // center the sprite 's anchor point
-  entity.anchor.x = 0.5;
-  entity.anchor.y = 0.5;
-
-  // move the sprite to the center of the screen
-  entity.position.x = x;
-  entity.position.y = y;
-
-  flockDemo.entities.addChild(entity);
+  var e = flockDemo.createEntity(x, y);
+  flockDemo.entities.addChild(e);
 }
 
 flockDemo.entities.scale.x = 0.5;

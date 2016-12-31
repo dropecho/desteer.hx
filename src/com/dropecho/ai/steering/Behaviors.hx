@@ -3,7 +3,6 @@ import com.dropecho.math.Vector;
 
 @:expose("de.steer.behaviors")
 class Behaviors {
-
   static public function seek(
     pos : Vector, 
     target : Vector, 
@@ -20,10 +19,11 @@ class Behaviors {
     maxVelocity: Float = 0) : Vector
   {
     var desired = seek(pos, target, maxVelocity);
-    var distance = desired.length;
+    var distance = Vector.sub2(pos, target).length;
 
     if (distance < arriveRadius) {
-      return desired.scale(distance / arriveRadius);
+      var scaleRatio = distance / arriveRadius;
+      return desired.scale(scaleRatio);
     }
 
     return desired;

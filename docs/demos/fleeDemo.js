@@ -16,24 +16,8 @@ var fleeDemo = new Demo('flee', function() {
   }
 });
 
-fleeDemo.entity = new PIXI.Sprite(fleeDemo.e1Texture);
-fleeDemo.entity.vel = {x:0, y:0, maxVelocity: 2, maxForce: 0.5};
-
-// center the sprite 's anchor point
-fleeDemo.entity.anchor.x = 0.5;
-fleeDemo.entity.anchor.y = 0.5;
-
-// move the sprite to the center of the screen
-fleeDemo.entity.position.x = 200;
-fleeDemo.entity.position.y = 150;
-
-fleeDemo.target = new PIXI.Sprite(fleeDemo.e2Texture);
-fleeDemo.target.position.x = 100;
-fleeDemo.target.position.y = 100;
-fleeDemo.target.vel = {x:0, y:0, maxVelocity: 1.75, maxForce: 0.5};
-
-fleeDemo.target.anchor.x = 0.5;
-fleeDemo.target.anchor.y = 0.5;
+fleeDemo.entity = fleeDemo.createEntity(250, 150, false);
+fleeDemo.target = fleeDemo.createEntity(100, 100, true);
 
 fleeDemo.stage.addChild(fleeDemo.entity);
 fleeDemo.stage.addChild(fleeDemo.target);

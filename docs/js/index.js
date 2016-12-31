@@ -35,6 +35,21 @@ Demo.prototype.animate = function animate() {
   this.renderer.render(this.stage);
 };
 
+Demo.prototype.createEntity = function createEntity(x, y, tex){
+  var r = tex !== undefined ? tex : Math.random() > 0.5;
+  var entity = new PIXI.Sprite(r ? this.e1Texture : this.e2Texture);
+  entity.vel = {x:0, y:0, maxVelocity: 3, maxForce: 0.25};
+
+  // center the sprite 's anchor point
+  entity.anchor.x = 0.5;
+  entity.anchor.y = 0.5;
+
+  // move the sprite to the center of the screen
+  entity.position.x = x;
+  entity.position.y = y;
+  return entity;
+};
+
 /**
  * updateEntityVel
  *

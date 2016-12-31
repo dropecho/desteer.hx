@@ -23,7 +23,7 @@ com_dropecho_ai_steering_Behaviors.arrive = function(pos,target,arriveRadius,max
 		arriveRadius = 0;
 	}
 	var desired = com_dropecho_ai_steering_Behaviors.seek(pos,target,maxVelocity);
-	var distance = desired.get_length();
+	var distance = com_dropecho_math_Vector.sub2(pos,target).get_length();
 	if(distance < arriveRadius) {
 		return desired.scale(distance / arriveRadius);
 	}
