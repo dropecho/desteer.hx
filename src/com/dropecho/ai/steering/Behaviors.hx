@@ -92,7 +92,7 @@ class Behaviors {
 
     if (neighborCount > 0) {
       centerOfMass.scale(1 / neighborCount);
-      return Behaviors.arrive(pos, centerOfMass, maxSpeed);
+      return Behaviors.arrive(pos, centerOfMass, 0, maxSpeed);
     }
 
     return new Vector();
@@ -119,7 +119,10 @@ class Behaviors {
     return arrive(pos, midpoint);
   }
 
-  static public function wander() {
+  static public function wander(rotation:Float = 0, scalingFactor:Float = 2) : Vector {
+    var forward = Vector.fromRad(rotation);
+    var wander = Vector.fromRad(rotation + ((Math.random() - .5) / scalingFactor));
+    return forward.add(wander);
   }
 
   static private function predict_target_pos(

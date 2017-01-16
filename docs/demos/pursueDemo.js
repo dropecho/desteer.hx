@@ -2,18 +2,15 @@ var pursueDemo = new Demo('pursue', function() {
   var pos = new de.math.Vector(this.entity.x, this.entity.y);
   var tar = new de.math.Vector(this.target.x, this.target.y);
   var tarVel = new de.math.Vector(this.target.vel.x, this.target.vel.y);
+  var center = new de.math.Vector(150, 150);
 
-  var vec = de.steer.behaviors.pursue(pos, tar, tarVel, 100);
+  var vec = de.steer.behaviors.pursue(pos, tar, tarVel, 10);
   updateEntityVel(this.entity, vec);
+  
+  var wander = de.steer.behaviors.wander(this.target.rotation, 1);
+  var seek = de.steer.behaviors.seek(tar, center).scale(0.0025);
 
-  var forward = de.math.Vector
-    .fromRad(this.target.rotation)
-    .scale(3);
-  var turn = de.math.Vector
-    .fromRad(this.target.rotation + (Math.PI/2))
-    .scale(0.1);
-
-  updateEntityVel(this.target, forward.add(turn));
+  updateEntityVel(this.target, seek.add(wander));
 
   var outsideBounds = tar.x < 0 || tar.x > 300 || tar.y < 0 || tar.y > 300;
 

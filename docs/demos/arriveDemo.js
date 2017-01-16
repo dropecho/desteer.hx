@@ -2,7 +2,7 @@ var arriveDemo = new Demo('arrive', function() {
   var pos = new de.math.Vector(this.entity.x, this.entity.y);
   var tar = new de.math.Vector(this.target.x, this.target.y);
 
-  var vec = de.steer.behaviors.arrive(pos, tar, 30, this.entity.vel.maxVelocity);
+  var vec = de.steer.behaviors.arrive(pos, tar, 20, this.entity.vel.maxVelocity);
   updateEntityVel(this.entity, vec);
 
   if(pos.distanceFrom(tar) < 10){

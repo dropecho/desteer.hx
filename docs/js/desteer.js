@@ -78,7 +78,7 @@ com_dropecho_ai_steering_Behaviors.cohese = function(pos,neighbors,maxSpeed) {
 	while(_g1 < neighborCount) centerOfMass.add(neighbors[_g1++]);
 	if(neighborCount > 0) {
 		centerOfMass.scale(1 / neighborCount);
-		return com_dropecho_ai_steering_Behaviors.arrive(pos,centerOfMass,maxSpeed);
+		return com_dropecho_ai_steering_Behaviors.arrive(pos,centerOfMass,0,maxSpeed);
 	}
 	return new com_dropecho_math_Vector();
 };
@@ -96,7 +96,14 @@ com_dropecho_ai_steering_Behaviors.align = function(heading,neighborHeadings) {
 com_dropecho_ai_steering_Behaviors.interpose = function(pos,target1,target2) {
 	return com_dropecho_ai_steering_Behaviors.arrive(pos,com_dropecho_math_Vector.midpoint(target1,target2));
 };
-com_dropecho_ai_steering_Behaviors.wander = function() {
+com_dropecho_ai_steering_Behaviors.wander = function(rotation,scalingFactor) {
+	if(scalingFactor == null) {
+		scalingFactor = 2;
+	}
+	if(rotation == null) {
+		rotation = 0;
+	}
+	return com_dropecho_math_Vector.fromRad(rotation).add(com_dropecho_math_Vector.fromRad(rotation + (Math.random() - .5) / scalingFactor));
 };
 com_dropecho_ai_steering_Behaviors.predict_target_pos = function(target,target_velocity,look_ahead) {
 	return com_dropecho_math_Vector.add2(target,com_dropecho_math_Vector.scale2(target_velocity,look_ahead));

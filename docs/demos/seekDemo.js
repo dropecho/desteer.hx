@@ -5,7 +5,7 @@ var seekDemo = new Demo('seek', function() {
   var vec = de.steer.behaviors.seek(pos, tar, this.entity.vel.max);
   updateEntityVel(this.entity, vec);
 
-  if(pos.distanceFrom(tar) < 5){
+  if(pos.distanceFrom(tar) < 10){
     this.target.x = Math.random() * (this.renderer.width / 2);
     this.target.y = Math.random() * (this.renderer.height / 2);
   }
