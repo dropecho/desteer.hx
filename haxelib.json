@@ -1,6 +1,6 @@
 {
 	"name": "DESteer",
-	"url" : "http://desteer.dropecho.com",
+	"url" : "https://dropechostudios.github.io/desteer.hx/",
 	"license": "MIT",
 	"tags": ["ai", "game"],
 	"description": "This library provides steering behaviors.",
