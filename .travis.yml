@@ -18,4 +18,4 @@ deploy:
     secure: XFOrxJFMDdOVA0WLKIgb3X8mBe3DoOmQO4Q662ofQPru4qAisFJAesjNdBU+Crqm9j/tSUx7jIobEedOXegqowAxHfEjy25XzUfduYyaeMXsXHyy1aPvSauXmVnLD6EnUECPBth+pYaFGztnG70BcpZrskwYD91xzLo4VWllg2o=
   on:
     tags: true
-    repo: dropechostudios/deds.hx
+    repo: dropechostudios/desteer.hx
