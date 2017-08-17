@@ -9,13 +9,23 @@
     "url": "http://github.com/vantreeseba"
   },
   "scripts": {
-    "build": "gulp build",
-    "test": "gulp test"
+    "build": "haxe targets/js.hxml",
+    "test": "haxelib run munit test -result-exit-code",
+    "watch": "npm-watch"
+  },
+  "watch": {
+    "test": {
+      "patterns": [
+        "src",
+        "test/**"
+      ],
+      "extensions": [
+        "hx"
+      ]
+    }
   },
   "devDependencies": {
-    "gulp": "*",
-    "gulp-shell": "*",
-    "mkdirp": "*"
+    "npm-watch": "*"
   },
   "main": "bin/js/desteer.js"
 }

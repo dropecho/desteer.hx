@@ -1,17 +1,16 @@
-language: node_js
-cache:
-  apt: true
-  directories:
-  - node_modules
-before_script:
-- sudo apt-get update
-- sudo apt-get install python-software-properties -y
-- sudo add-apt-repository ppa:eyecreate/haxe -y
-- sudo apt-get update
-- sudo apt-get install haxe -y
-- sudo haxelib setup /usr/lib/haxe/lib
-- sudo haxelib install munit
-- sudo haxelib install hamcrest
+language: haxe
+hxml:
+  - targets/js.hxml
+  - targets/test.hxml
+
+script:
+  - haxe targets/js.hxml
+  - haxelib run munit test -result-exit-code
+
+branches:
+    only:
+        - master
+
 deploy:
   provider: npm
   email: vantreeseba@gmail.com
@@ -19,4 +18,4 @@ deploy:
     secure: XFOrxJFMDdOVA0WLKIgb3X8mBe3DoOmQO4Q662ofQPru4qAisFJAesjNdBU+Crqm9j/tSUx7jIobEedOXegqowAxHfEjy25XzUfduYyaeMXsXHyy1aPvSauXmVnLD6EnUECPBth+pYaFGztnG70BcpZrskwYD91xzLo4VWllg2o=
   on:
     tags: true
-    repo: DropechoStudios/desteer.hx
+    repo: dropechostudios/deds.hx

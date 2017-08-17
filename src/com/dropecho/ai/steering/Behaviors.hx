@@ -44,7 +44,7 @@ class Behaviors {
     target : Vector, 
     fleeRadius: Float = -1) : Vector
   {
-    var shouldFlee = fleeRadius != -1 && fleeRadius >= target.distanceFrom(pos);
+    var shouldFlee = fleeRadius == -1 || fleeRadius >= target.distanceFrom(pos);
     return shouldFlee ? Vector.sub2(pos, target) : new Vector(0,0,0);
   }
 

@@ -40,7 +40,6 @@ class BehaviorsTest {
   public function arrive() {
     var actual = Behaviors.arrive(new Vector(1, 0, 0), new Vector(0, 1, 0));
     var expected = new Vector(-1, 1, 0);
-
     Assert.areEqual(expected.x, actual.x);
     Assert.areEqual(expected.y, actual.y);
     Assert.areEqual(expected.z, actual.z);
@@ -52,7 +51,6 @@ class BehaviorsTest {
                    new Vector(0, 0, 0),
                    new Vector(2, 0, 0),
                    new Vector(-4, 0, 0));
-
     Assert.areEqual(-1.0, actual.x);
     Assert.areEqual(0.0, actual.y);
   }
@@ -63,20 +61,17 @@ class BehaviorsTest {
                    new Vector(0, 0, 0),
                    new Vector(1, 0, 0),
                    new Vector(4, 0, 0));
-
     Assert.areEqual(2.0, actual.x);
     Assert.areEqual(0.0, actual.y);
   }
 
   @Test
   public function seperate() {
-    var pos = new Vector(0,0,0);
-    var e1 = new Vector(-1,0,0);
-    var e2 = new Vector(1,0,0);
-
+    var pos = new Vector(0, 0, 0);
+    var e1 = new Vector(-1, 0, 0);
+    var e2 = new Vector(1, 0, 0);
     var entities = [pos, e1, e2];
     var actual = Behaviors.seperate(pos, entities);
-
     Assert.areEqual(0.0, actual.x);
     Assert.areEqual(0.0, actual.y);
   }
