@@ -6,19 +6,19 @@ var flockDemo = new Demo('flock', function() {
   this.entities.children.forEach(e => {
     let pos = new de.math.Vector(e.x, e.y);
     let forward = de.math.Vector.fromRad(e.rotation).scale(0.5);
-    let seperate = de.steer.behaviors.seperate(pos, ents).scale(0.01);
-    let cohese = de.steer.behaviors.cohese(pos, ents).scale(0.01);
-    let align = de.steer.behaviors.align(forward, entHeadings).scale(0.015);
-    let wander = de.steer.behaviors.wander(e.rotation).scale(0.25);
+    let seperate = de.steer.behaviors.seperate(pos, ents).scale(0.007);
+    let cohese = de.steer.behaviors.cohese(pos, ents).scale(0.005);
+    let align = de.steer.behaviors.align(forward, entHeadings).scale(0.02);
+    let wander = de.steer.behaviors.wander(e.rotation).scale(0.5);
 
     let seek = de.steer.behaviors.seek(pos, center).scale(0.0001);
 
     updateEntityVel(e, seperate
-        .add(align)
-        .add(cohese)
-        .add(forward)
-        .add(seek)
-        .add(wander));
+      .add(align)
+      .add(cohese)
+      .add(forward)
+      .add(seek)
+      .add(wander));
   });
 });
 
