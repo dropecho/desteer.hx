@@ -7,6 +7,7 @@ script:
   - haxe targets/js.hxml
   - haxelib run munit test -result-exit-code
 
+
 branches:
     only:
         - master
@@ -19,3 +20,6 @@ deploy:
   on:
     tags: true
     repo: dropechostudios/desteer.hx
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
