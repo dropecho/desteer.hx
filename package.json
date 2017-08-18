@@ -10,7 +10,7 @@
   },
   "scripts": {
     "build": "haxe targets/js.hxml",
-    "test": "haxelib run munit test -result-exit-code",
+    "test": "haxelib run munit test -result-exit-code -coverage",
     "watch": "npm-watch"
   },
   "watch": {
