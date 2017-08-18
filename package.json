@@ -12,6 +12,7 @@
     "build": "haxe targets/js.hxml",
     "test": "haxelib run munit test -result-exit-code -coverage",
     "watch": "npm-watch",
+    "start": "cd docs && http-server",
     "preversion": "npm test",
     "version": "npm run build"
   },
@@ -27,7 +28,8 @@
     }
   },
   "devDependencies": {
-    "npm-watch": "*"
+    "npm-watch": "*",
+    "http-server": "*"
   },
   "main": "bin/js/desteer.js"
 }
